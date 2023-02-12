@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="faa19ef745004490924c714d9fb30b4f" Name="Diagram1">
+        <EntityTypeShape EntityType="db_sekolahModel.class" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.detail_class" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.header_schedule" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.role" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.student_multi_schedule" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.subject" Width="1.5" PointX="3.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.user" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="db_sekolahModel.FK_detail_class_class" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_header_schedule_class" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_detail_class_header_schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_header_schedule_subject" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_header_schedule_user" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_student_multi_schedule_header_schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_user_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="db_sekolahModel.FK_student_multi_schedule_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

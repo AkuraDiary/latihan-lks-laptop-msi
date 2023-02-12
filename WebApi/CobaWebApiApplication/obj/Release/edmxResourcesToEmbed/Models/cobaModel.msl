@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_first_cobaModelStoreContainer" CdmEntityContainer="db_first_cobaEntities">
+    <EntitySetMapping Name="anggotas">
+      <EntityTypeMapping TypeName="db_first_cobaModel.anggota">
+        <MappingFragment StoreEntitySet="anggota">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="db_first_cobaModel.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

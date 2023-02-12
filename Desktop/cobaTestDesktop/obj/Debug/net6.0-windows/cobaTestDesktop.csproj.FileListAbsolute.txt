@@ -1,0 +1,17 @@
+C:\Bismillah\Desktop\cobaTestDesktop\bin\Debug\net6.0-windows\cobaTestDesktop.exe
+C:\Bismillah\Desktop\cobaTestDesktop\bin\Debug\net6.0-windows\cobaTestDesktop.deps.json
+C:\Bismillah\Desktop\cobaTestDesktop\bin\Debug\net6.0-windows\cobaTestDesktop.runtimeconfig.json
+C:\Bismillah\Desktop\cobaTestDesktop\bin\Debug\net6.0-windows\cobaTestDesktop.dll
+C:\Bismillah\Desktop\cobaTestDesktop\bin\Debug\net6.0-windows\cobaTestDesktop.pdb
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.csproj.AssemblyReference.cache
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.Form1.resources
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.csproj.GenerateResource.cache
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.AssemblyInfoInputs.cache
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.AssemblyInfo.cs
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.csproj.CoreCompileInputs.cache
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.dll
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\refint\cobaTestDesktop.dll
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.pdb
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\cobaTestDesktop.genruntimeconfig.cache
+C:\Bismillah\Desktop\cobaTestDesktop\obj\Debug\net6.0-windows\ref\cobaTestDesktop.dll

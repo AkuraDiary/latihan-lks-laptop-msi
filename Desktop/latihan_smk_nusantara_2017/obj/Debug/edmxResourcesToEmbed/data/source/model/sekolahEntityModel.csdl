@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_sekolahModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="detail_class" Relationship="Self.FK_detail_class_class" FromRole="class" ToRole="detail_class" />
+    <NavigationProperty Name="header_schedule" Relationship="Self.FK_header_schedule_class" FromRole="class" ToRole="header_schedule" />
+  </EntityType>
+  <EntityType Name="detail_class">
+    <Key>
+      <PropertyRef Name="detail_id" />
+    </Key>
+    <Property Name="detail_id" Type="Int32" Nullable="false" />
+    <Property Name="class_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="schedule_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="class" Relationship="Self.FK_detail_class_class" FromRole="detail_class" ToRole="class" />
+    <NavigationProperty Name="header_schedule" Relationship="Self.FK_detail_class_header_schedule" FromRole="detail_class" ToRole="header_schedule" />
+  </EntityType>
+  <EntityType Name="header_schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="Int32" Nullable="false" />
+    <Property Name="subject_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="class_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="class" Relationship="Self.FK_header_schedule_class" FromRole="header_schedule" ToRole="class" />
+    <NavigationProperty Name="detail_class" Relationship="Self.FK_detail_class_header_schedule" FromRole="header_schedule" ToRole="detail_class" />
+    <NavigationProperty Name="subject" Relationship="Self.FK_header_schedule_subject" FromRole="header_schedule" ToRole="subject" />
+    <NavigationProperty Name="user" Relationship="Self.FK_header_schedule_user" FromRole="header_schedule" ToRole="user" />
+    <NavigationProperty Name="student_multi_schedule" Relationship="Self.FK_student_multi_schedule_header_schedule" FromRole="header_schedule" ToRole="student_multi_schedule" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="users" Relationship="Self.FK_user_roles" FromRole="roles" ToRole="user" />
+    <Property Name="role_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="student_multi_schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schedule_id" Type="Int32" Nullable="false" />
+    <Property Name="student_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="header_schedule" Relationship="Self.FK_student_multi_schedule_header_schedule" FromRole="student_multi_schedule" ToRole="header_schedule" />
+    <NavigationProperty Name="user" Relationship="Self.FK_student_multi_schedule_user" FromRole="student_multi_schedule" ToRole="user" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="assignment" Type="Int32" Nullable="false" />
+    <Property Name="mid_exam" Type="Int32" Nullable="false" />
+    <Property Name="final_exam" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="header_schedule" Relationship="Self.FK_header_schedule_subject" FromRole="subject" ToRole="header_schedule" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="no_hp" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="header_schedule" Relationship="Self.FK_header_schedule_user" FromRole="user" ToRole="header_schedule" />
+    <NavigationProperty Name="role" Relationship="Self.FK_user_roles" FromRole="user" ToRole="roles" />
+    <NavigationProperty Name="student_multi_schedule" Relationship="Self.FK_student_multi_schedule_user" FromRole="user" ToRole="student_multi_schedule" />
+  </EntityType>
+  <Association Name="FK_detail_class_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="detail_class" Type="Self.detail_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="detail_class">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_header_schedule_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detail_class_header_schedule">
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="1" />
+    <End Role="detail_class" Type="Self.detail_class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="header_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Principal>
+      <Dependent Role="detail_class">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_header_schedule_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="subject_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_header_schedule_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_multi_schedule_header_schedule">
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="1" />
+    <End Role="student_multi_schedule" Type="Self.student_multi_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="header_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Principal>
+      <Dependent Role="student_multi_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_roles">
+    <End Role="roles" Type="Self.role" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_multi_schedule_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="student_multi_schedule" Type="Self.student_multi_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="student_multi_schedule">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_sekolahEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="classes" EntityType="Self.class" />
+    <EntitySet Name="detail_class" EntityType="Self.detail_class" />
+    <EntitySet Name="header_schedule" EntityType="Self.header_schedule" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="student_multi_schedule" EntityType="Self.student_multi_schedule" />
+    <EntitySet Name="subjects" EntityType="Self.subject" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_detail_class_class" Association="Self.FK_detail_class_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="detail_class" EntitySet="detail_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_header_schedule_class" Association="Self.FK_header_schedule_class">
+      <End Role="class" EntitySet="classes" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detail_class_header_schedule" Association="Self.FK_detail_class_header_schedule">
+      <End Role="header_schedule" EntitySet="header_schedule" />
+      <End Role="detail_class" EntitySet="detail_class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_header_schedule_subject" Association="Self.FK_header_schedule_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_header_schedule_user" Association="Self.FK_header_schedule_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_multi_schedule_header_schedule" Association="Self.FK_student_multi_schedule_header_schedule">
+      <End Role="header_schedule" EntitySet="header_schedule" />
+      <End Role="student_multi_schedule" EntitySet="student_multi_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_roles" Association="Self.FK_user_roles">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="user" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_multi_schedule_user" Association="Self.FK_student_multi_schedule_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="student_multi_schedule" EntitySet="student_multi_schedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
