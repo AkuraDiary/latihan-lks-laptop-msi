@@ -15,6 +15,7 @@ namespace latihan_smk_nusantara_2017.ui.fragment
 {
     public partial class ClassScheduleFragment : UserControl
     {
+        subject selectedSubject = null;
         public ClassScheduleFragment()
         {
             InitializeComponent();
@@ -46,8 +47,29 @@ namespace latihan_smk_nusantara_2017.ui.fragment
 
             }
 
-            //classScheduleDataGridView.DataSource = StudentNotifier.listSchedule;
         }
 
+        private void btnViewSubjectInfo_Click(object sender, EventArgs e)
+        {
+            if (selectedSubject != null)
+            {
+                MessageBox.Show(selectedSubject.description, selectedSubject.name);
+            }
+            
+        }
+
+        private void classScheduleDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if(classScheduleDataGridView.SelectedRows.Count > 0)
+            {
+                
+                foreach (DataGridViewRow row in classScheduleDataGridView.SelectedRows)
+                {
+                    selectedSubject = Repository.db.subjects.Find(row.Cells["subject_id"].Value.ToString());
+
+                }
+
+            }
+        }
     }
 }

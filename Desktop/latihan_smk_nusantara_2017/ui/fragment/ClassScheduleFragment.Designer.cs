@@ -30,11 +30,11 @@
         {
             this.btnViewSubjectInfo = new System.Windows.Forms.Button();
             this.classScheduleDataGridView = new System.Windows.Forms.DataGridView();
-            this.lblWelcome = new System.Windows.Forms.Label();
             this.subject_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.class_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teacher_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblWelcome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.classScheduleDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@
             this.btnViewSubjectInfo.TabIndex = 13;
             this.btnViewSubjectInfo.Text = "View Subject Info";
             this.btnViewSubjectInfo.UseVisualStyleBackColor = false;
+            this.btnViewSubjectInfo.Click += new System.EventHandler(this.btnViewSubjectInfo_Click);
             // 
             // classScheduleDataGridView
             // 
@@ -68,17 +69,7 @@
             this.classScheduleDataGridView.ReadOnly = true;
             this.classScheduleDataGridView.Size = new System.Drawing.Size(1083, 331);
             this.classScheduleDataGridView.TabIndex = 12;
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(11, 20);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(154, 25);
-            this.lblWelcome.TabIndex = 11;
-            this.lblWelcome.Text = "View Schedule";
-            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.classScheduleDataGridView.SelectionChanged += new System.EventHandler(this.classScheduleDataGridView_SelectionChanged);
             // 
             // subject_id
             // 
@@ -103,6 +94,17 @@
             this.teacher_name.HeaderText = "Teacher";
             this.teacher_name.Name = "teacher_name";
             this.teacher_name.ReadOnly = true;
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(11, 20);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(154, 25);
+            this.lblWelcome.TabIndex = 11;
+            this.lblWelcome.Text = "View Schedule";
+            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ClassScheduleFragment
             // 
