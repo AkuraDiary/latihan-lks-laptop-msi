@@ -86,6 +86,8 @@ namespace latihan_smk_nusantara_2017.ui.fragment.admin
 
         private void bindSelectedStudentDat()
         {
+            
+
             edtName.Text = selectedStudent.name;
             edtGender.Text = selectedStudent.gender;
             edtAddress.Text = selectedStudent.address;

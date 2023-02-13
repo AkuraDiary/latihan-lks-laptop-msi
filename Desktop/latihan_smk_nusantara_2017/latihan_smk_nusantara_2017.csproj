@@ -205,6 +205,8 @@
       <DependentUpon>sekolahEntityModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\latihan_smk_nusantara_2017.data.source.model.class.datasource" />
+    <None Include="Properties\DataSources\latihan_smk_nusantara_2017.data.source.model.subject.datasource" />
     <None Include="Properties\DataSources\latihan_smk_nusantara_2017.data.source.model.user.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -28,13 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.teachingScheduleDataGridView = new System.Windows.Forms.DataGridView();
             this.studentListDataGridView = new System.Windows.Forms.DataGridView();
             this.btnViewSubjectInfo = new System.Windows.Forms.Button();
+            this.useridDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.schedule_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.class_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.teachingScheduleDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblWelcome
@@ -65,18 +75,30 @@
             this.teachingScheduleDataGridView.AllowUserToDeleteRows = false;
             this.teachingScheduleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.teachingScheduleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.teachingScheduleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.schedule_id,
+            this.subject_id,
+            this.subject,
+            this.class_name});
             this.teachingScheduleDataGridView.Location = new System.Drawing.Point(8, 40);
             this.teachingScheduleDataGridView.Name = "teachingScheduleDataGridView";
             this.teachingScheduleDataGridView.ReadOnly = true;
             this.teachingScheduleDataGridView.Size = new System.Drawing.Size(1083, 232);
             this.teachingScheduleDataGridView.TabIndex = 7;
+            this.teachingScheduleDataGridView.SelectionChanged += new System.EventHandler(this.teachingScheduleDataGridView_SelectionChanged);
             // 
             // studentListDataGridView
             // 
             this.studentListDataGridView.AllowUserToAddRows = false;
             this.studentListDataGridView.AllowUserToDeleteRows = false;
+            this.studentListDataGridView.AutoGenerateColumns = false;
             this.studentListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.studentListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.useridDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.genderDataGridViewTextBoxColumn});
+            this.studentListDataGridView.DataSource = this.userBindingSource;
             this.studentListDataGridView.Location = new System.Drawing.Point(8, 330);
             this.studentListDataGridView.Name = "studentListDataGridView";
             this.studentListDataGridView.ReadOnly = true;
@@ -96,6 +118,56 @@
             this.btnViewSubjectInfo.TabIndex = 10;
             this.btnViewSubjectInfo.Text = "View Subject Info";
             this.btnViewSubjectInfo.UseVisualStyleBackColor = false;
+            this.btnViewSubjectInfo.Click += new System.EventHandler(this.btnViewSubjectInfo_Click);
+            // 
+            // useridDataGridViewTextBoxColumn
+            // 
+            this.useridDataGridViewTextBoxColumn.DataPropertyName = "user_id";
+            this.useridDataGridViewTextBoxColumn.HeaderText = "user_id";
+            this.useridDataGridViewTextBoxColumn.Name = "useridDataGridViewTextBoxColumn";
+            this.useridDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // genderDataGridViewTextBoxColumn
+            // 
+            this.genderDataGridViewTextBoxColumn.DataPropertyName = "gender";
+            this.genderDataGridViewTextBoxColumn.HeaderText = "gender";
+            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
+            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(latihan_smk_nusantara_2017.data.source.model.user);
+            // 
+            // schedule_id
+            // 
+            this.schedule_id.HeaderText = "Schedule Id";
+            this.schedule_id.Name = "schedule_id";
+            this.schedule_id.ReadOnly = true;
+            // 
+            // subject_id
+            // 
+            this.subject_id.HeaderText = "Subject ID";
+            this.subject_id.Name = "subject_id";
+            this.subject_id.ReadOnly = true;
+            // 
+            // subject
+            // 
+            this.subject.HeaderText = "Subject";
+            this.subject.Name = "subject";
+            this.subject.ReadOnly = true;
+            // 
+            // class_name
+            // 
+            this.class_name.HeaderText = "Class Name";
+            this.class_name.Name = "class_name";
+            this.class_name.ReadOnly = true;
             // 
             // TeachingScheduleFragment
             // 
@@ -108,8 +180,10 @@
             this.Controls.Add(this.lblWelcome);
             this.Name = "TeachingScheduleFragment";
             this.Size = new System.Drawing.Size(1110, 755);
+            this.Load += new System.EventHandler(this.TeachingScheduleFragment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teachingScheduleDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,5 +196,13 @@
         private System.Windows.Forms.DataGridView teachingScheduleDataGridView;
         private System.Windows.Forms.DataGridView studentListDataGridView;
         private System.Windows.Forms.Button btnViewSubjectInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn useridDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn schedule_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn class_name;
     }
 }
