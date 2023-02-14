@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     fun observeLoginResult(){
         Repository.userResponse.observe(this){
             if (it.user_id?.isNotEmpty()!!){
+                userPreferences.saveSession(it.name!!, it.user_id!!)
                 moveTOMainActivity()
             }
         }
