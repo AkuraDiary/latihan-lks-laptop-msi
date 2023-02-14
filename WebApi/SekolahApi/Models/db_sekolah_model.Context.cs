@@ -30,5 +30,6 @@ namespace SekolahApi.Models
         public DbSet<user> users { get; set; }
         public DbSet<@class> classes { get; set; }
         public DbSet<header_schedule> header_schedule { get; set; }
+        public DbSet<subject> subjects { get; set; }
     }
 }

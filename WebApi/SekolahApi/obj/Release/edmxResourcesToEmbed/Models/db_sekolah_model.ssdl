@@ -24,6 +24,17 @@
     <Property Name="schedule_id" Type="int" Nullable="false" />
     <Property Name="student_id" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="assignment" Type="int" Nullable="false" />
+    <Property Name="mid_exam" Type="int" Nullable="false" />
+    <Property Name="final_exam" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="user">
     <Key>
       <PropertyRef Name="user_id" />
@@ -48,6 +59,18 @@
       </Principal>
       <Dependent Role="header_schedule">
         <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_header_schedule_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="subject_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -91,9 +114,14 @@
     <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="header_schedule" EntityType="Self.header_schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="student_multi_schedule" EntityType="Self.student_multi_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_header_schedule_class" Association="Self.FK_header_schedule_class">
       <End Role="class" EntitySet="class" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_header_schedule_subject" Association="Self.FK_header_schedule_subject">
+      <End Role="subject" EntitySet="subject" />
       <End Role="header_schedule" EntitySet="header_schedule" />
     </AssociationSet>
     <AssociationSet Name="FK_header_schedule_user" Association="Self.FK_header_schedule_user">

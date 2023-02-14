@@ -29,6 +29,17 @@
           <Property Name="schedule_id" Type="int" Nullable="false" />
           <Property Name="student_id" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="assignment" Type="int" Nullable="false" />
+          <Property Name="mid_exam" Type="int" Nullable="false" />
+          <Property Name="final_exam" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="user_id" />
@@ -53,6 +64,18 @@
             </Principal>
             <Dependent Role="header_schedule">
               <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_header_schedule_subject">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="header_schedule">
+              <PropertyRef Name="subject_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -96,9 +119,14 @@
           <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="header_schedule" EntityType="Self.header_schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="student_multi_schedule" EntityType="Self.student_multi_schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_header_schedule_class" Association="Self.FK_header_schedule_class">
             <End Role="class" EntitySet="class" />
+            <End Role="header_schedule" EntitySet="header_schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_header_schedule_subject" Association="Self.FK_header_schedule_subject">
+            <End Role="subject" EntitySet="subject" />
             <End Role="header_schedule" EntitySet="header_schedule" />
           </AssociationSet>
           <AssociationSet Name="FK_header_schedule_user" Association="Self.FK_header_schedule_user">
@@ -125,8 +153,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="schedule_id" Type="Int32" Nullable="false" />
           <Property Name="student_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_student_multi_schedule_user" FromRole="student_multi_schedule" ToRole="user" />
-          <NavigationProperty Name="header_schedule" Relationship="db_sekolahModel.FK_student_multi_schedule_header_schedule" FromRole="student_multi_schedule" ToRole="header_schedule" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -142,8 +168,6 @@
           <Property Name="no_hp" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="student_multi_schedule" Relationship="Self.FK_student_multi_schedule_user" FromRole="user" ToRole="student_multi_schedule" />
-          <NavigationProperty Name="header_schedule" Relationship="db_sekolahModel.FK_header_schedule_user" FromRole="user" ToRole="header_schedule" />
         </EntityType>
         <Association Name="FK_student_multi_schedule_user">
           <End Role="user" Type="Self.user" Multiplicity="1" />
@@ -178,6 +202,11 @@
             <End Role="header_schedule" EntitySet="header_schedule" />
             <End Role="student_multi_schedule" EntitySet="student_multi_schedule" />
           </AssociationSet>
+          <EntitySet Name="subjects" EntityType="db_sekolahModel.subject" />
+          <AssociationSet Name="FK_header_schedule_subject" Association="db_sekolahModel.FK_header_schedule_subject">
+            <End Role="subject" EntitySet="subjects" />
+            <End Role="header_schedule" EntitySet="header_schedule" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="class">
           <Key>
@@ -185,7 +214,6 @@
           </Key>
           <Property Name="class_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="header_schedule" Relationship="db_sekolahModel.FK_header_schedule_class" FromRole="class" ToRole="header_schedule" />
         </EntityType>
         <EntityType Name="header_schedule">
           <Key>
@@ -195,9 +223,6 @@
           <Property Name="subject_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="teacher_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="class_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="class" Relationship="db_sekolahModel.FK_header_schedule_class" FromRole="header_schedule" ToRole="class" />
-          <NavigationProperty Name="user" Relationship="db_sekolahModel.FK_header_schedule_user" FromRole="header_schedule" ToRole="user" />
-          <NavigationProperty Name="student_multi_schedule" Relationship="db_sekolahModel.FK_student_multi_schedule_header_schedule" FromRole="header_schedule" ToRole="student_multi_schedule" />
         </EntityType>
         <Association Name="FK_header_schedule_class">
           <End Type="db_sekolahModel.class" Role="class" Multiplicity="1" />
@@ -232,6 +257,29 @@
             </Principal>
             <Dependent Role="student_multi_schedule">
               <PropertyRef Name="schedule_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="assignment" Type="Int32" Nullable="false" />
+          <Property Name="mid_exam" Type="Int32" Nullable="false" />
+          <Property Name="final_exam" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_header_schedule_subject">
+          <End Type="db_sekolahModel.subject" Role="subject" Multiplicity="1" />
+          <End Type="db_sekolahModel.header_schedule" Role="header_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="header_schedule">
+              <PropertyRef Name="subject_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -281,6 +329,18 @@
                 <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
                 <ScalarProperty Name="subject_id" ColumnName="subject_id" />
                 <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="db_sekolahModel.subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="final_exam" ColumnName="final_exam" />
+                <ScalarProperty Name="mid_exam" ColumnName="mid_exam" />
+                <ScalarProperty Name="assignment" ColumnName="assignment" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

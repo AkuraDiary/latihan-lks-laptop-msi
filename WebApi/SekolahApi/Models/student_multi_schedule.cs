@@ -17,8 +17,5 @@ namespace SekolahApi.Models
         public int id { get; set; }
         public int schedule_id { get; set; }
         public string student_id { get; set; }
-    
-        public virtual user user { get; set; }
-        public virtual header_schedule header_schedule { get; set; }
     }
 }

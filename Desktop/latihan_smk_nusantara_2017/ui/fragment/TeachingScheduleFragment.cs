@@ -25,7 +25,12 @@ namespace latihan_smk_nusantara_2017.ui.fragment
         {
             if (selectedSubject != null)
             {
-                MessageBox.Show(selectedSubject.description, selectedSubject.name);
+                string message = selectedSubject.description + "\n\n" +
+                  "Composition Assignment\n" +
+                  "Assignment : " + selectedSubject.assignment + "\n" +
+                  "Mid Exam : " + selectedSubject.mid_exam + "\n" +
+                  "Final Exam : " + selectedSubject.final_exam;
+                MessageBox.Show(message, selectedSubject.name);
             }
 
         }

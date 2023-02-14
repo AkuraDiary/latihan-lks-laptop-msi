@@ -14,14 +14,7 @@ namespace SekolahApi.Models
     
     public partial class @class
     {
-        public @class()
-        {
-            this.header_schedule = new HashSet<header_schedule>();
-        }
-    
         public string class_id { get; set; }
         public string name { get; set; }
-    
-        public virtual ICollection<header_schedule> header_schedule { get; set; }
     }
 }

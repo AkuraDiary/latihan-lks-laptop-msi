@@ -164,7 +164,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\HeaderScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentMultiScheduleController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +194,9 @@
       <DependentUpon>db_sekolah_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\student_multi_schedule.cs">
+      <DependentUpon>db_sekolah_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\subject.cs">
       <DependentUpon>db_sekolah_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">

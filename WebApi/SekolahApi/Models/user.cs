@@ -14,12 +14,6 @@ namespace SekolahApi.Models
     
     public partial class user
     {
-        public user()
-        {
-            this.student_multi_schedule = new HashSet<student_multi_schedule>();
-            this.header_schedule = new HashSet<header_schedule>();
-        }
-    
         public string user_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -30,8 +24,5 @@ namespace SekolahApi.Models
         public string no_hp { get; set; }
         public byte[] photo { get; set; }
         public int role_id { get; set; }
-    
-        public virtual ICollection<student_multi_schedule> student_multi_schedule { get; set; }
-        public virtual ICollection<header_schedule> header_schedule { get; set; }
     }
 }

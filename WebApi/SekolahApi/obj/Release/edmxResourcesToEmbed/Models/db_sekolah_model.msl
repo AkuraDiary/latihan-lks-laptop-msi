@@ -44,5 +44,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="subjects">
+      <EntityTypeMapping TypeName="db_sekolahModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="final_exam" ColumnName="final_exam" />
+          <ScalarProperty Name="mid_exam" ColumnName="mid_exam" />
+          <ScalarProperty Name="assignment" ColumnName="assignment" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
