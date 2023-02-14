@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_sekolahModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="header_schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="teacher_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="class_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="student_multi_schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schedule_id" Type="int" Nullable="false" />
+    <Property Name="student_id" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="text" Nullable="false" />
+    <Property Name="date_of_birth" Type="date" Nullable="false" />
+    <Property Name="no_hp" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="photo" Type="image" />
+    <Property Name="role_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_header_schedule_class">
+    <End Role="class" Type="Self.class" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_header_schedule_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="header_schedule">
+        <PropertyRef Name="teacher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_multi_schedule_header_schedule">
+    <End Role="header_schedule" Type="Self.header_schedule" Multiplicity="1" />
+    <End Role="student_multi_schedule" Type="Self.student_multi_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="header_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Principal>
+      <Dependent Role="student_multi_schedule">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_student_multi_schedule_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="student_multi_schedule" Type="Self.student_multi_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="student_multi_schedule">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_sekolahModelStoreContainer">
+    <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="header_schedule" EntityType="Self.header_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student_multi_schedule" EntityType="Self.student_multi_schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_header_schedule_class" Association="Self.FK_header_schedule_class">
+      <End Role="class" EntitySet="class" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_header_schedule_user" Association="Self.FK_header_schedule_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="header_schedule" EntitySet="header_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_multi_schedule_header_schedule" Association="Self.FK_student_multi_schedule_header_schedule">
+      <End Role="header_schedule" EntitySet="header_schedule" />
+      <End Role="student_multi_schedule" EntitySet="student_multi_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_student_multi_schedule_user" Association="Self.FK_student_multi_schedule_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="student_multi_schedule" EntitySet="student_multi_schedule" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -28,26 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.edtClassname = new System.Windows.Forms.ComboBox();
+            this.classBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.studentListDataGridView = new System.Windows.Forms.DataGridView();
+            this.unenrolled_user_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unenrolled_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.participateStudentDataGridView = new System.Windows.Forms.DataGridView();
+            this.user_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddToParticipant = new System.Windows.Forms.Button();
             this.btnRemoveFromParticipant = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.participateStudentDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // edtClassname
             // 
+            this.edtClassname.DataSource = this.classBindingSource;
+            this.edtClassname.DisplayMember = "name";
             this.edtClassname.FormattingEnabled = true;
             this.edtClassname.Location = new System.Drawing.Point(26, 74);
             this.edtClassname.Name = "edtClassname";
             this.edtClassname.Size = new System.Drawing.Size(219, 21);
             this.edtClassname.TabIndex = 0;
+            this.edtClassname.ValueMember = "name";
+            this.edtClassname.SelectedIndexChanged += new System.EventHandler(this.edtClassname_SelectedIndexChanged);
+            // 
+            // classBindingSource
+            // 
+            this.classBindingSource.DataSource = typeof(latihan_smk_nusantara_2017.data.source.model.@class);
             // 
             // label4
             // 
@@ -89,25 +108,73 @@
             // 
             this.studentListDataGridView.AllowUserToAddRows = false;
             this.studentListDataGridView.AllowUserToDeleteRows = false;
+            this.studentListDataGridView.AutoGenerateColumns = false;
             this.studentListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.studentListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.unenrolled_user_id,
+            this.unenrolled_name});
+            this.studentListDataGridView.DataSource = this.userBindingSource1;
             this.studentListDataGridView.Location = new System.Drawing.Point(26, 141);
             this.studentListDataGridView.Name = "studentListDataGridView";
             this.studentListDataGridView.ReadOnly = true;
             this.studentListDataGridView.Size = new System.Drawing.Size(391, 562);
             this.studentListDataGridView.TabIndex = 48;
+            this.studentListDataGridView.SelectionChanged += new System.EventHandler(this.studentListDataGridView_SelectionChanged);
+            // 
+            // unenrolled_user_id
+            // 
+            this.unenrolled_user_id.DataPropertyName = "user_id";
+            this.unenrolled_user_id.HeaderText = "user_id";
+            this.unenrolled_user_id.Name = "unenrolled_user_id";
+            this.unenrolled_user_id.ReadOnly = true;
+            // 
+            // unenrolled_name
+            // 
+            this.unenrolled_name.DataPropertyName = "name";
+            this.unenrolled_name.HeaderText = "name";
+            this.unenrolled_name.Name = "unenrolled_name";
+            this.unenrolled_name.ReadOnly = true;
+            // 
+            // userBindingSource1
+            // 
+            this.userBindingSource1.DataSource = typeof(latihan_smk_nusantara_2017.data.source.model.user);
             // 
             // participateStudentDataGridView
             // 
             this.participateStudentDataGridView.AllowUserToAddRows = false;
             this.participateStudentDataGridView.AllowUserToDeleteRows = false;
+            this.participateStudentDataGridView.AutoGenerateColumns = false;
             this.participateStudentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.participateStudentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.participateStudentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.user_id,
+            this.name});
+            this.participateStudentDataGridView.DataSource = this.userBindingSource;
             this.participateStudentDataGridView.Location = new System.Drawing.Point(689, 141);
             this.participateStudentDataGridView.Name = "participateStudentDataGridView";
             this.participateStudentDataGridView.ReadOnly = true;
             this.participateStudentDataGridView.Size = new System.Drawing.Size(391, 562);
             this.participateStudentDataGridView.TabIndex = 49;
+            this.participateStudentDataGridView.SelectionChanged += new System.EventHandler(this.participateStudentDataGridView_SelectionChanged);
+            // 
+            // user_id
+            // 
+            this.user_id.DataPropertyName = "user_id";
+            this.user_id.HeaderText = "user_id";
+            this.user_id.Name = "user_id";
+            this.user_id.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(latihan_smk_nusantara_2017.data.source.model.user);
             // 
             // btnAddToParticipant
             // 
@@ -122,6 +189,7 @@
             this.btnAddToParticipant.TabIndex = 50;
             this.btnAddToParticipant.Text = ">>";
             this.btnAddToParticipant.UseVisualStyleBackColor = false;
+            this.btnAddToParticipant.Click += new System.EventHandler(this.btnAddToParticipant_Click);
             // 
             // btnRemoveFromParticipant
             // 
@@ -136,6 +204,7 @@
             this.btnRemoveFromParticipant.TabIndex = 51;
             this.btnRemoveFromParticipant.Text = "<<";
             this.btnRemoveFromParticipant.UseVisualStyleBackColor = false;
+            this.btnRemoveFromParticipant.Click += new System.EventHandler(this.btnRemoveFromParticipant_Click);
             // 
             // lblTitle
             // 
@@ -163,8 +232,12 @@
             this.Controls.Add(this.edtClassname);
             this.Name = "ManageClassFragment";
             this.Size = new System.Drawing.Size(1110, 755);
+            this.Load += new System.EventHandler(this.ManageClassFragment_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.participateStudentDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +254,12 @@
         private System.Windows.Forms.Button btnAddToParticipant;
         private System.Windows.Forms.Button btnRemoveFromParticipant;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.BindingSource classBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn user_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unenrolled_user_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unenrolled_name;
+        private System.Windows.Forms.BindingSource userBindingSource1;
     }
 }

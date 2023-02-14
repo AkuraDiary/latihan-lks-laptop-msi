@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cfd24ded77ef4698be1dead541ec44fb" Name="Diagram1">
+        <EntityTypeShape EntityType="db_sekolahModel.student_multi_schedule" Width="2.375" PointX="4.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sekolahModel.user" Width="1.75" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="db_sekolahModel.FK_student_multi_schedule_user" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_sekolahModel.class" Width="1.5" PointX="2" PointY="5.375" />
+        <EntityTypeShape EntityType="db_sekolahModel.header_schedule" Width="1.5" PointX="4.75" PointY="4.625" />
+        <AssociationConnector Association="db_sekolahModel.FK_header_schedule_class" />
+        <AssociationConnector Association="db_sekolahModel.FK_header_schedule_user" />
+        <AssociationConnector Association="db_sekolahModel.FK_student_multi_schedule_header_schedule" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
